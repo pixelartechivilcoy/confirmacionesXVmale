@@ -77,6 +77,47 @@ Papa.parse(SHEET_URL, {
 
 function activarFiltros() {
 
+  const data = results.data.filter(r => r["Vas a asistir?"]);
+
+let totalRespuestas = data.length;
+let confirmados = 0;
+let noConfirmados = 0;
+
+let vegetariana = 0;
+let vegana = 0;
+let sintacc = 0;
+let sibo = 0;
+let otros = 0;
+
+data.forEach(r => {
+
+  const estado = r["Vas a asistir?"];
+  const invitados = r["Nombre"] || "";
+
+  if (estado.includes("Confirmo")) {
+    confirmados++;
+  } else {
+    noConfirmados++;
+  }
+
+  if(invitados.includes("Vegetariana")) vegetariana++;
+  if(invitados.includes("Vegana")) vegana++;
+  if(invitados.includes("Sin TACC")) sintacc++;
+  if(invitados.includes("Sibo")) sibo++;
+  if(invitados.includes("Otros")) otros++;
+
+});
+
+document.getElementById("stat-respuestas").textContent = totalRespuestas;
+document.getElementById("stat-confirmados").textContent = confirmados;
+document.getElementById("stat-noconfirmados").textContent = noConfirmados;
+
+document.getElementById("stat-vegetariana").textContent = vegetariana;
+document.getElementById("stat-vegana").textContent = vegana;
+document.getElementById("stat-sintacc").textContent = sintacc;
+document.getElementById("stat-sibo").textContent = sibo;
+document.getElementById("stat-otros").textContent = otros;
+
   const botones = document.querySelectorAll(".filtro");
 
   botones.forEach(boton => {
@@ -121,63 +162,3 @@ function activarFiltros() {
   });
 }
 
-let totalRespuestas = data.length;
-let confirmados = 0;
-let noConfirmados = 0;
-
-data.forEach(r => {
-
-  if(r.asistencia === "Confirmo Asistencia"){
-    confirmados++;
-  } else {
-    noConfirmados++;
-  }
-
-});
-
-document.getElementById("stat-respuestas").textContent = totalRespuestas;
-document.getElementById("stat-confirmados").textContent = confirmados;
-document.getElementById("stat-noconfirmados").textContent = noConfirmados;
-
-const busqueda = document.getElementById("busqueda");
-
-busqueda.addEventListener("input", () => {
-
-  const texto = busqueda.value.toLowerCase();
-
-  document.querySelectorAll(".confirmacion").forEach(card => {
-
-    const contenido = card.innerText.toLowerCase();
-
-    if(contenido.includes(texto)){
-      card.style.display = "block";
-    }else{
-      card.style.display = "none";
-    }
-
-  });
-
-});
-
-let vegetariana = 0;
-let vegana = 0;
-let sintacc = 0;
-let sibo = 0;
-let otros = 0;
-
-data.forEach(r => {
-
-  const invitados = r.invitados || "";
-
-  if(invitados.includes("Vegetariana")) vegetariana++;
-  if(invitados.includes("Vegana")) vegana++;
-  if(invitados.includes("Sin TACC")) sintacc++;
-  if(invitados.includes("Sibo")) sibo++;
-  if(invitados.includes("Otros")) otros++;
-});
-
-document.getElementById("stat-vegetariana").textContent = vegetariana;
-document.getElementById("stat-vegana").textContent = vegana;
-document.getElementById("stat-sintacc").textContent = sintacc;
-document.getElementById("stat-sibo").textContent = sibo;
-document.getElementById("stat-otros").textContent = otros;
