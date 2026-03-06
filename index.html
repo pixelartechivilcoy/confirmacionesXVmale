@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confirmaciones de Asistencia</title>
+
+  <!-- CSS (lo vamos a crear en el paso 2) -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <main class="panel">
+
+    <!-- Título -->
+    <header class="panel-header">
+      <h1>Confirmaciones de asistencia</h1>
+    </header>
+
+    <section class="panel-stats">
+
+  <div class="stat">
+    <span id="stat-respuestas">0</span>
+    <small>respuestas</small>
+  </div>
+
+  <div class="stat">
+    <span id="stat-confirmados">0</span>
+    <small>confirmados</small>
+  </div>
+
+  <div class="stat">
+    <span id="stat-personas">0</span>
+    <small>no confirmados</small>
+  </div>
+
+</section>
+    <!-- Filtros (por ahora solo visuales) -->
+    <section class="panel-filtros">
+      <button class="filtro activo">Todos</button>
+      <button class="filtro">Confirmados</button>
+      <button class="filtro">No confirmados</button>
+      <button class="filtro">1–2 personas</button>
+      <button class="filtro">3+ personas</button>
+    </section>
+
+    <div class="buscador">
+  <input
+    type="text"
+    id="busqueda"
+    placeholder="Buscar invitado..."
+  >
+</div>
+
+<section class="panel-dietas">
+
+  <div class="dieta">
+    <span id="stat-vegetariana">0</span>
+    <small>vegetarianos</small>
+  </div>
+
+  <div class="dieta">
+    <span id="stat-vegana">0</span>
+    <small>veganos</small>
+  </div>
+
+  <div class="dieta">
+    <span id="stat-sintacc">0</span>
+    <small>sin tacc</small>
+  </div>
+
+  <div class="dieta">
+    <span id="stat-sibo">0</span>
+    <small>sibo</small>
+  </div>
+
+  <div class="dieta">
+    <span id="stat-otros">0</span>
+    <small>otros</small>
+  </div>
+
+</section>
+
+</div>
+
+    <!-- LISTA DE CONFIRMACIONES -->
+    <!-- Acá el JS va a insertar los bloques -->
+    <section class="panel-lista">
+      <!-- vacío -->
+    </section>
+
+  </main>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+  <!-- JS (lo vamos a crear en el paso 3) -->
+  <script src="app.js"></script>
+</body>
+
+<footer class="footer">
+
+  <div class="footer-contenido">
+
+    <!-- LOGO -->
+    <img src="Pixelarte Logotipo.png" alt="Pixelarte" class="footer-logo">
+
+    <!-- REDES -->
+    <div class="footer-redes">
+
+      <a
+        href="https://wa.me/5492345478614"
+        target="_blank"
+        aria-label="WhatsApp"
+        class="footer-icono"
+      >
+        <img src="Whatsapp.png" alt="WhatsApp">
+      </a>
+
+      <a
+        href="https://www.instagram.com/pixelartechivilcoy/"
+        target="_blank"
+        aria-label="Instagram"
+        class="footer-icono"
+      >
+        <img src="Instagram.png" alt="Instagram">
+      </a>
+
+    </div>
+
+  </div>
+
+</footer>
+
+</html>
+
