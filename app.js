@@ -112,8 +112,27 @@ document.getElementById("stat-vegana").textContent = vegana;
 document.getElementById("stat-sintacc").textContent = sintacc;
 document.getElementById("stat-sibo").textContent = sibo;
 document.getElementById("stat-otros").textContent = otros;
-  }
+  
+  const buscador = document.getElementById("busqueda");
+
+buscador.addEventListener("input", () => {
+
+  const texto = buscador.value.toLowerCase();
+
+  todasLasConfirmaciones.forEach(bloque => {
+
+    const contenido = bloque.innerText.toLowerCase();
+
+    if (contenido.includes(texto)) {
+      bloque.style.display = "";
+    } else {
+      bloque.style.display = "none";
+    }
+
+  });
+  
 });
+
 
   const botones = document.querySelectorAll(".filtro");
 
@@ -208,23 +227,7 @@ function activarFiltros(){
 
 }
 
-const buscador = document.getElementById("busqueda");
-
-buscador.addEventListener("input", () => {
-
-  const texto = buscador.value.toLowerCase();
-
-  todasLasConfirmaciones.forEach(bloque => {
-
-    const contenido = bloque.innerText.toLowerCase();
-
-    if (contenido.includes(texto)) {
-      bloque.style.display = "";
-    } else {
-      bloque.style.display = "none";
-    }
-
-  });
+}
 
 });
 
