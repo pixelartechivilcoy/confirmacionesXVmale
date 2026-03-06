@@ -72,12 +72,10 @@ Papa.parse(SHEET_URL, {
     });
 
     activarFiltros();
-  }
-});
 
-function activarFiltros() {
+/* CONTADORES */
 
-  const data = results.data.filter(r => r["Vas a asistir?"]);
+const data = results.data.filter(r => r["Vas a asistir?"]);
 
 let totalRespuestas = data.length;
 let confirmados = 0;
@@ -92,19 +90,16 @@ let otros = 0;
 data.forEach(r => {
 
   const estado = r["Vas a asistir?"];
-  const invitados = r["Nombre"] || "";
+  const invitados = (r["Nombre"] || "").toLowerCase();
 
-  if (estado.includes("Confirmo")) {
-    confirmados++;
-  } else {
-    noConfirmados++;
-  }
+  if (estado.includes("Confirmo")) confirmados++;
+  else noConfirmados++;
 
-  if(invitados.includes("Vegetariana")) vegetariana++;
-  if(invitados.includes("Vegana")) vegana++;
-  if(invitados.includes("Sin TACC")) sintacc++;
-  if(invitados.includes("Sibo")) sibo++;
-  if(invitados.includes("Otros")) otros++;
+  if(invitados.includes("vegetariana")) vegetariana++;
+if(invitados.includes("vegana")) vegana++;
+if(invitados.includes("sin tacc")) sintacc++;
+if(invitados.includes("sibo")) sibo++;
+if(invitados.includes("otro")) otros++;
 
 });
 
@@ -117,6 +112,8 @@ document.getElementById("stat-vegana").textContent = vegana;
 document.getElementById("stat-sintacc").textContent = sintacc;
 document.getElementById("stat-sibo").textContent = sibo;
 document.getElementById("stat-otros").textContent = otros;
+  }
+});
 
   const botones = document.querySelectorAll(".filtro");
 
@@ -160,5 +157,55 @@ document.getElementById("stat-otros").textContent = otros;
 
     });
   });
+
+function activarFiltros(){
+
+  const botones = document.querySelectorAll(".filtro");
+
+  botones.forEach(boton => {
+
+    boton.addEventListener("click", () => {
+
+      botones.forEach(b => b.classList.remove("activo"));
+      boton.classList.add("activo");
+
+      const texto = boton.textContent.trim().toLowerCase();
+
+      todasLasConfirmaciones.forEach(bloque => {
+
+        let mostrar = true;
+
+        const estado = bloque.dataset.estado;
+        const cantidad = parseInt(bloque.dataset.cantidad, 10);
+
+        if (texto === "confirmados") {
+          mostrar = estado.includes("confirmo");
+        }
+
+        if (texto === "no confirmados") {
+          mostrar = !estado.includes("confirmo");
+        }
+
+        if (texto === "1–2 personas") {
+          mostrar = cantidad <= 2;
+        }
+
+        if (texto === "3+ personas") {
+          mostrar = cantidad >= 3;
+        }
+
+        if (texto === "todos") {
+          mostrar = true;
+        }
+
+        bloque.style.display = mostrar ? "" : "none";
+
+      });
+
+    });
+
+  });
+
 }
+
 
