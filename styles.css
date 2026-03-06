@@ -170,7 +170,7 @@ body {
   letter-spacing: 0.25em;
   text-transform: uppercase;
   margin-bottom: 0.3rem;
-  color: #92A49F;
+  color: #E6A4A0;
 }
 
 /* =======================
@@ -306,5 +306,18 @@ body {
   letter-spacing:.2em;
   text-transform:uppercase;
   color:#4A3A39;
+}
+
+@media (max-width:600px){
+
+.panel-dietas{
+flex-wrap:wrap;
+gap:1rem;
+}
+
+.dieta{
+width:40%;
+}
+
 }
 
